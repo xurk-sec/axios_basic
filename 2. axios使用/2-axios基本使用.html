@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <style>
+    button{
+      width: 130px;
+      height: 30px;
+    }
+    #btn1{
+      background-color: blueviolet;
+    }
+    #btn2{
+      background-color: orange;
+    }
+    #btn3{
+      background-color: green;
+    }
+    #btn4{
+      background-color: red;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <h1>基本使用</h1>
+  <button id="btn1">发送GET请求</button>
+  <button id="btn2">发送POST请求</button>
+  <button id="btn3">发送PUT请求</button>
+  <button id="btn4">发送DELETE请求</button>
+
+  <script>
+    // 获取按钮
+    const btns = document.querySelectorAll('button');
+
+    // GET 查询数据
+    btns[0].onclick = function(){
+      // send AJAX request (返回结果为 Promise 对象)
+      axios({
+        // request type
+        method: 'GET',
+        // URL (id = 2 的文章)
+        url: 'http://localhost:3000/posts/2',
+
+      }).then(response => {
+        console.log(response);
+      })
+    }
+
+    // POST 增加数据
+    btns[1].onclick = function(){
+      // send AJAX request (返回结果为 Promise 对象)
+      axios({
+        // request type
+        method: 'POST',
+        // URL (id = 2 的文章)
+        url: 'http://localhost:3000/posts',
+        // 设置请求体 (id会自动加)
+        data: {
+          title: "今天天气不错",
+          author: "Jimy"
+        }
+
+      }).then(response => {
+        console.log(response);
+      })
+    }
+
+    // PUT 更新数据
+    btns[2].onclick = function(){
+      axios({
+        // request type
+        method: 'PUT',
+        // URL (id = 2 的文章)
+        url: 'http://localhost:3000/posts/3',
+        // 更新数据
+        data: {
+          title: "今天天气不错",
+          author: "Jack"
+        }
+
+      }).then(response => {
+        console.log(response);
+      })
+    }
+
+    // DELETE 删除数据
+    btns[3].onclick = function(){
+      axios({
+        // request type
+        method: 'DELETE',
+        // URL (id = 2 的文章)
+        url: 'http://localhost:3000/posts/3',
+      }).then(response => {
+        console.log(response);
+      })
+    }
+  </script>
+</body>
+</html>
