@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <style>
+    button{
+      width: 130px;
+      height: 30px;
+    }
+    #btn1{
+      background-color: blueviolet;
+    }
+    #btn2{
+      background-color: orange;
+    }
+    #btn3{
+      background-color: green;
+    }
+    #btn4{
+      background-color: red;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <h1>基本使用</h1>
+  <button id="btn1">发送GET请求</button>
+  <button id="btn2">发送POST请求</button>
+  <button id="btn3">发送PUT请求</button>
+  <button id="btn4">发送DELETE请求</button>
+
+  <script>
+    const btns = document.querySelectorAll('button');
+    // 默认配置
+    axios.defaults.method = 'GET';
+    axios.defaults.baseURL = 'http://localhost:3000';
+    axios.defaults.timeout = 3000;
+    // GET 查询数据
+    btns[0].onclick = function(){
+      axios.request({
+        // method: 'GET',
+        url: '/posts'
+
+      }).then(response => {
+        console.log(response);
+      })
+    }
+  </script>
+</body>
+</html>
